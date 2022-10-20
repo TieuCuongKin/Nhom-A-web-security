@@ -4,7 +4,7 @@ session_start();
 
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
-
+$keyRandom = rand(10,100);
 $params = [];
 if (!empty($_GET['keyword'])) {
     $params['keyword'] = $_GET['keyword'];
@@ -50,7 +50,7 @@ $users = $userModel->getUsers($params);
                                 <?php echo $user['type']?>
                             </td>
                             <td>
-                                <a href="form_user.php?id=<?php echo $user['id'] ?>">
+                                <a href="form_user.php?id=<?php echo base64_encode(base64_encode($keyRandom.$user['id'])) ?>">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update"></i>
                                 </a>
                                 <a href="view_user.php?id=<?php echo $user['id'] ?>">

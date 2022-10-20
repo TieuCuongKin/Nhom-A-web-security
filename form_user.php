@@ -9,7 +9,8 @@ $_id = NULL;
 
 if (!empty($_GET['id'])) {
     $_id = $_GET['id'];
-    $user = $userModel->findUserById($_id);//Update existing user
+    $idDecode = substr(base64_decode(base64_decode($_id)),2);
+    $user = $userModel->findUserById($idDecode);//Update existing user
 }
 
 
